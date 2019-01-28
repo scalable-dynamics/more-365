@@ -11,6 +11,22 @@ License: [MIT](http://www.opensource.org/licenses/mit-license.php)
 ## Nuget.org
 The package name is more-365, you can find it here:
 
+[![nuget version](https://img.shields.io/nuget/v/more365.svg?style=flat)](https://www.nuget.org/packages/more365)
+
+Packages for each individual component:
+
+### more365.AzureAD
+[![nuget version](https://img.shields.io/nuget/v/more365.AzureAD.svg?style=flat)](https://www.nuget.org/packages/more365.AzureAD)
+
+### more365.Dynamics
+[![nuget version](https://img.shields.io/nuget/v/more365.Dynamics.svg?style=flat)](https://www.nuget.org/packages/more365.Dynamics)
+
+### more365.Graph
+[![nuget version](https://img.shields.io/nuget/v/more365.Graph.svg?style=flat)](https://www.nuget.org/packages/more365.Graph)
+
+### more365.SharePoint
+[![nuget version](https://img.shields.io/nuget/v/more365.SharePoint.svg?style=flat)](https://www.nuget.org/packages/more365.SharePoint)
+
 ...
 
 ## C# Example

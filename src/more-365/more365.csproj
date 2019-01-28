@@ -6,19 +6,27 @@
     <Authors>Greg DeCarlo</Authors>
     <Company>Scalable Dynamics</Company>
     <Product>more-365</Product>
+    <RepositoryUrl>https://github.com/scalable-dynamics/more-365.git</RepositoryUrl>
+    <PackageIconUrl></PackageIconUrl>
+    <PackageProjectUrl>https://github.com/scalable-dynamics/more-365</PackageProjectUrl>
+    <RepositoryType>github</RepositoryType>
+    <PackageTags>Microsoft,AzureAD,Authentication,C#,AspNetCore,dotnetcore,Azure,function,API,Xrm,more-365</PackageTags>
+    <Copyright>Copyright (c) 2019 Scalable Dynamics, LLC</Copyright>
+    <Description>
+      more-365 enables communicating with Microsoft 365 services from a server-side application (aspnetcore / Azure Functions)
+      For Example: Azure AD Authentication using Certificates from Key Vault, Dynamics 365 Queries + Batches, SharePoint File Upload / Download, Graph API convert to PDF + send email
+    </Description>
+    <PackageLicenseUrl>http://www.opensource.org/licenses/mit-license.php</PackageLicenseUrl>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.1.1" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="2.1.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\more365.AzureAD\more365.AzureAD.csproj" />
-    <ProjectReference Include="..\more365.Dynamics\more365.Dynamics.csproj" />
-    <ProjectReference Include="..\more365.Graph\more365.Graph.csproj" />
-    <ProjectReference Include="..\more365.SharePoint\more365.SharePoint.csproj" />
+    <PackageReference Include="more365.AzureAD" Version="1.0.0" />
+    <PackageReference Include="more365.Dynamics" Version="1.0.0" />
+    <PackageReference Include="more365.Graph" Version="1.0.0" />
+    <PackageReference Include="more365.SharePoint" Version="1.0.0" />
   </ItemGroup>
 
 </Project>

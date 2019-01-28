@@ -6,6 +6,14 @@
     <Authors>Greg DeCarlo</Authors>
     <Company>Scalable Dynamics</Company>
     <Product>more-365</Product>
+    <RepositoryUrl>https://github.com/scalable-dynamics/more-365.git</RepositoryUrl>
+    <PackageTags>Microsoft,SharePoint,Online,Office365,C#,AspNetCore,dotnetcore,Azure,function,API,Xrm,more-365,query,entity,fetchxml,odata,webapi</PackageTags>
+    <RepositoryType>github</RepositoryType>
+    <PackageProjectUrl>https://github.com/scalable-dynamics/more-365</PackageProjectUrl>
+    <Copyright>Copyright (c) 2019 Scalable Dynamics, LLC</Copyright>
+    <Description>more-365 enables communicating with Microsoft 365 services from a server-side application (aspnetcore / Azure Functions)
+For Example: Azure AD Authentication using Certificates from Key Vault, Dynamics 365 Queries + Batches, SharePoint File Upload / Download, Graph API convert to PDF + send email</Description>
+    <PackageLicenseUrl>http://www.opensource.org/licenses/mit-license.php</PackageLicenseUrl>
   </PropertyGroup>
 
   <ItemGroup>

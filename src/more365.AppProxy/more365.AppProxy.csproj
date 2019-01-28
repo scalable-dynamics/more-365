@@ -14,10 +14,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\more-365\more365.csproj" />
+    <PackageReference Include="more365" Version="1.0.0" />
   </ItemGroup>
 
 </Project>
