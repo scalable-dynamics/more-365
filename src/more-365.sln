@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2041
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "more365.AzureAD", "more365.AzureAD\more365.AzureAD.csproj", "{5A4A501C-3E97-49D9-BB91-AF85D6E5A204}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "more365.Dynamics", "more365.Dynamics\more365.Dynamics.csproj", "{5ACF0242-2730-4896-8F64-13ABFEA746C0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "more365.Graph", "more365.Graph\more365.Graph.csproj", "{07A07778-0B4B-4191-BB48-03D5313674E4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "more365.SharePoint", "more365.SharePoint\more365.SharePoint.csproj", "{4572C476-88DE-4798-B1F5-34636266528A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "more365", "more-365\more365.csproj", "{06E1F4C2-B3EA-4CD8-AC7E-EB3F4D919FF7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "more365.AppProxy", "more365.AppProxy\more365.AppProxy.csproj", "{C87DD6CF-6749-49BD-8DC2-D441141E6544}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5A4A501C-3E97-49D9-BB91-AF85D6E5A204}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A4A501C-3E97-49D9-BB91-AF85D6E5A204}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A4A501C-3E97-49D9-BB91-AF85D6E5A204}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A4A501C-3E97-49D9-BB91-AF85D6E5A204}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5ACF0242-2730-4896-8F64-13ABFEA746C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5ACF0242-2730-4896-8F64-13ABFEA746C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5ACF0242-2730-4896-8F64-13ABFEA746C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5ACF0242-2730-4896-8F64-13ABFEA746C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07A07778-0B4B-4191-BB48-03D5313674E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07A07778-0B4B-4191-BB48-03D5313674E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07A07778-0B4B-4191-BB48-03D5313674E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07A07778-0B4B-4191-BB48-03D5313674E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4572C476-88DE-4798-B1F5-34636266528A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4572C476-88DE-4798-B1F5-34636266528A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4572C476-88DE-4798-B1F5-34636266528A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4572C476-88DE-4798-B1F5-34636266528A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06E1F4C2-B3EA-4CD8-AC7E-EB3F4D919FF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06E1F4C2-B3EA-4CD8-AC7E-EB3F4D919FF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06E1F4C2-B3EA-4CD8-AC7E-EB3F4D919FF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06E1F4C2-B3EA-4CD8-AC7E-EB3F4D919FF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C87DD6CF-6749-49BD-8DC2-D441141E6544}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C87DD6CF-6749-49BD-8DC2-D441141E6544}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C87DD6CF-6749-49BD-8DC2-D441141E6544}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C87DD6CF-6749-49BD-8DC2-D441141E6544}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5F674195-3A4C-40AC-9675-48363E86CB86}
+	EndGlobalSection
+EndGlobal

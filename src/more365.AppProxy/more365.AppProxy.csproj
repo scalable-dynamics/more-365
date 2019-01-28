@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <RootNamespace>more365.AppProxy</RootNamespace>
+    <Authors>Greg DeCarlo</Authors>
+    <Company>Scalable Dynamics</Company>
+    <Product>more-365</Product>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="wwwroot\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\more-365\more365.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <RootNamespace>more365</RootNamespace>
+    <Authors>Greg DeCarlo</Authors>
+    <Company>Scalable Dynamics</Company>
+    <Product>more-365</Product>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="2.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\more365.AzureAD\more365.AzureAD.csproj" />
+    <ProjectReference Include="..\more365.Dynamics\more365.Dynamics.csproj" />
+    <ProjectReference Include="..\more365.Graph\more365.Graph.csproj" />
+    <ProjectReference Include="..\more365.SharePoint\more365.SharePoint.csproj" />
+  </ItemGroup>
+
+</Project>
