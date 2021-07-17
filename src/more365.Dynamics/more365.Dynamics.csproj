@@ -16,7 +16,6 @@
 For Example: Azure AD Authentication using Certificates from Key Vault, Dataverse Queries and Web API Batches, SharePoint File Upload / Download, Graph API convert to PDF and send email on behalf of Office 365 user</Description>
     <PackageLicenseUrl>http://www.opensource.org/licenses/mit-license.php</PackageLicenseUrl>
     <Version>5.0.0</Version>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
