@@ -1,19 +1,22 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>more365.Dynamics</RootNamespace>
     <Authors>Greg DeCarlo</Authors>
     <Company>Scalable Dynamics</Company>
-    <Product>more-365</Product>
+    <Product>more365</Product>
     <RepositoryUrl>https://github.com/scalable-dynamics/more-365.git</RepositoryUrl>
-    <PackageTags>Microsoft,Dynamics,365,PowerApps,C#,AspNetCore,dotnetcore,Azure,function,API,Xrm,more-365,query,entity,fetchxml,odata,webapi,fetch,metadata,optionset,batch</PackageTags>
-    <RepositoryType>github</RepositoryType>
-    <Copyright>Copyright (c) 2019 Scalable Dynamics, LLC</Copyright>
+    <PackageIconUrl></PackageIconUrl>
     <PackageProjectUrl>https://github.com/scalable-dynamics/more-365</PackageProjectUrl>
-    <Description>more-365 enables communicating with Microsoft 365 services from a server-side application (aspnetcore / Azure Functions)
-For Example: Azure AD Authentication using Certificates from Key Vault, Dynamics 365 Queries + Batches, SharePoint File Upload / Download, Graph API convert to PDF + send email</Description>
+    <RepositoryType>github</RepositoryType>
+    <PackageTags>Microsoft,AzureAD,Authentication,C#,AspNetCore,.NET 5,Azure,function,API,Xrm,more365</PackageTags>
+    <Copyright>Copyright (c) 2021 Scalable Dynamics, LLC</Copyright>
+    <Description>more365 enables communicating with Microsoft 365 services from a server-side application (aspnetcore / Azure Functions)
+For Example: Azure AD Authentication using Certificates from Key Vault, Dataverse Queries and Web API Batches, SharePoint File Upload / Download, Graph API convert to PDF and send email on behalf of Office 365 user</Description>
     <PackageLicenseUrl>http://www.opensource.org/licenses/mit-license.php</PackageLicenseUrl>
+    <Version>5.0.0</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>

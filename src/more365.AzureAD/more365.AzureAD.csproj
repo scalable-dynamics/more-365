@@ -1,26 +1,28 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>more365.AzureAD</RootNamespace>
     <Authors>Greg DeCarlo</Authors>
     <Company>Scalable Dynamics</Company>
-    <Product>more-365</Product>
+    <Product>more365</Product>
     <RepositoryUrl>https://github.com/scalable-dynamics/more-365.git</RepositoryUrl>
     <PackageIconUrl></PackageIconUrl>
     <PackageProjectUrl>https://github.com/scalable-dynamics/more-365</PackageProjectUrl>
     <RepositoryType>github</RepositoryType>
-    <PackageTags>Microsoft,AzureAD,Authentication,C#,AspNetCore,dotnetcore,Azure,function,API,Xrm,more-365</PackageTags>
-    <Copyright>Copyright (c) 2019 Scalable Dynamics, LLC</Copyright>
-    <Description>more-365 enables communicating with Microsoft 365 services from a server-side application (aspnetcore / Azure Functions)
-For Example: Azure AD Authentication using Certificates from Key Vault, Dynamics 365 Queries + Batches, SharePoint File Upload / Download, Graph API convert to PDF + send email</Description>
+    <PackageTags>Microsoft,AzureAD,Authentication,C#,AspNetCore,.NET 5,Azure,function,API,Xrm,more365</PackageTags>
+    <Copyright>Copyright (c) 2021 Scalable Dynamics, LLC</Copyright>
+    <Description>more365 enables communicating with Microsoft 365 services from a server-side application (aspnetcore / Azure Functions)
+For Example: Azure AD Authentication using Certificates from Key Vault, Dataverse Queries and Web API Batches, SharePoint File Upload / Download, Graph API convert to PDF and send email on behalf of Office 365 user</Description>
     <PackageLicenseUrl>http://www.opensource.org/licenses/mit-license.php</PackageLicenseUrl>
+    <Version>5.0.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Azure.KeyVault" Version="3.0.3" />
-    <PackageReference Include="Microsoft.Azure.Services.AppAuthentication" Version="1.0.3" />
-    <PackageReference Include="Microsoft.IdentityModel.Clients.ActiveDirectory" Version="3.14.2" />
+    <PackageReference Include="Azure.Identity" Version="1.4.0" />
+    <PackageReference Include="Azure.Security.KeyVault.Certificates" Version="4.2.0" />
+    <PackageReference Include="Azure.Security.KeyVault.Secrets" Version="4.2.0" />
+    <PackageReference Include="Microsoft.Identity.Client" Version="4.34.0" />
   </ItemGroup>
 
 </Project>

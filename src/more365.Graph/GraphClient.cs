@@ -1,9 +1,9 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace more365.Graph
@@ -74,7 +74,7 @@ namespace more365.Graph
                 }
                 else
                 {
-                    var requestJson = JsonConvert.SerializeObject(requestBody);
+                    var requestJson = JsonSerializer.Serialize(requestBody);
                     request.Content = new StringContent(requestJson, Encoding.UTF8, "application/json");
                 }
             }
@@ -94,7 +94,7 @@ namespace more365.Graph
                 }
             }
 
-            return JsonConvert.DeserializeObject<T>(json);
+            return JsonSerializer.Deserialize<T>(json);
         }
 
         private async Task<byte[]> download(string url)

@@ -1,4 +1,4 @@
-﻿using Microsoft.IdentityModel.Clients.ActiveDirectory;
+﻿using Microsoft.Identity.Client;
 using System;
 
 namespace more365.AzureAD
@@ -15,7 +15,7 @@ namespace more365.AzureAD
 
         internal AuthenticationToken(AuthenticationResult authenticationResult)
         {
-            AccessTokenType = authenticationResult.AccessTokenType;
+            AccessTokenType = authenticationResult.TokenType;
             AccessToken = authenticationResult.AccessToken;
             ExpiresOn = authenticationResult.ExpiresOn;
         }

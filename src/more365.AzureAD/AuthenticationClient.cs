@@ -1,4 +1,4 @@
-﻿using Microsoft.IdentityModel.Clients.ActiveDirectory;
+﻿using Microsoft.Identity.Client;
 using System;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
@@ -7,24 +7,11 @@ namespace more365.AzureAD
 {
     public sealed class AuthenticationClient : IAuthenticationClient
     {
-        private const string AuthenticationAuthority = "https://login.microsoftonline.com";
+        private string AuthenticationAuthority => $"https://login.microsoftonline.com/{_tenantId}";
 
-        private readonly AuthenticationContext _context;
-        private readonly X509Certificate2 _certificate;
+        private readonly string _tenantId;
         private readonly string _clientId;
-        private readonly string _clientSecret;
-
-        public AuthenticationClient(Guid tenantId, Guid clientId, X509Certificate2 certificate)
-            : this(tenantId, clientId)
-        {
-            _certificate = certificate;
-        }
-
-        public AuthenticationClient(Guid tenantId, Guid clientId, string clientSecret)
-            : this(tenantId, clientId)
-        {
-            _clientSecret = clientSecret;
-        }
+        private readonly IConfidentialClientApplication _app;
 
         private AuthenticationClient(Guid tenantId, Guid clientId)
         {
@@ -32,28 +19,49 @@ namespace more365.AzureAD
             {
                 throw new AuthenticationClientException(AuthenticationAuthority, "Invalid Configuration: TenantId and ClientId is required");
             }
-            var authority = AuthenticationAuthority.TrimEnd('/') + "/" + tenantId.ToString("D");
-            _context = new AuthenticationContext(authority);
+            _tenantId = tenantId.ToString();
             _clientId = clientId.ToString("D");
+        }
+
+        public AuthenticationClient(Guid tenantId, Guid clientId, X509Certificate2 certificate)
+            : this(tenantId, clientId)
+        {
+            _app = ConfidentialClientApplicationBuilder.Create(_clientId)
+                                                       .WithAuthority(AuthenticationAuthority)
+                                                       .WithCertificate(certificate)
+                                                       .Build();
+        }
+
+        public AuthenticationClient(Guid tenantId, Guid clientId, string clientSecret)
+            : this(tenantId, clientId)
+        {
+            _app = ConfidentialClientApplicationBuilder.Create(_clientId)
+                                                       .WithAuthority(AuthenticationAuthority)
+                                                       .WithClientSecret(clientSecret)
+                                                       .Build();
         }
 
         public Task<AuthenticationToken> GetAuthenticationTokenAsync(Uri resource)
         {
-            return GetAuthenticationTokenAsync(resource.GetLeftPart(UriPartial.Authority));
+            return GetAuthenticationTokenAsync(resource.GetLeftPart(UriPartial.Authority) + "/.default");
         }
 
         public async Task<AuthenticationToken> GetAuthenticationTokenAsync(string resource)
         {
             try
             {
-                var authenticationInfo = (_certificate != null
-                    ? await _context.AcquireTokenAsync(resource, new ClientAssertionCertificate(_clientId, _certificate))
-                    : await _context.AcquireTokenAsync(resource, new ClientCredential(_clientId, _clientSecret)));
-                return new AuthenticationToken(authenticationInfo);
+                var result = await _app.AcquireTokenForClient(new[] { resource })
+                                       .ExecuteAsync();
+                return new AuthenticationToken(result);
             }
-            catch (AdalException ex)
+            catch (MsalException ex)
             {
-                throw new AuthenticationClientException(_context.Authority, "Application: " + _clientId + "\nResource: " + resource + "\nErrorCode" + ex.ErrorCode + "\nAdalException" + ex.Message);
+                throw new AuthenticationClientException(AuthenticationAuthority, $@"
+Application: {_clientId}
+Resource: {resource}
+ErrorCode: {ex.ErrorCode}
+MsalException: {ex.Message}
+");
             }
         }
     }

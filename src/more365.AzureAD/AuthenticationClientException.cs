@@ -18,7 +18,7 @@ namespace more365.AzureAD
 
         public override string ToString()
         {
-            return base.ToString() + "\n\nDetails: " + Details;
+            return Message + "\n\nDetails: " + Details;
         }
     }
 }
