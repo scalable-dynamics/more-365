@@ -1,11 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>more365.AppProxy</RootNamespace>
     <Authors>Greg DeCarlo</Authors>
     <Company>Scalable Dynamics</Company>
-    <Product>more-365</Product>
+    <Product>more365</Product>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,8 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="more365" Version="1.0.0" />
+    <PackageReference Include="more365" Version="5.0.0" />
   </ItemGroup>
 
 </Project>

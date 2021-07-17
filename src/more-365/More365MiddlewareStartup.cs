@@ -15,12 +15,7 @@ namespace more365
 
         public void ConfigureServices(IServiceCollection services)
         {
-            var more365Config = _configuration.GetSection("more-365");
-            if(more365Config.Value == null)
-            {
-                more365Config = _configuration.GetSection("more365");
-            }
-            services.AddMore365Middleware(more365Config);
+            services.AddMore365Middleware(_configuration);
         }
 
         public void Configure(IApplicationBuilder app)

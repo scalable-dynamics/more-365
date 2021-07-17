@@ -8,6 +8,8 @@ namespace more365
 
         public Uri SharePointUrl { get; set; }
 
+        public Uri AzureKeyVaultUrl { get; set; }
+
         public Guid AzureADTenantId { get; set; }
 
         public Guid AzureADApplicationId { get; set; }
@@ -15,5 +17,6 @@ namespace more365
         public string AzureADAppCertificateKey { get; set; }
 
         public string AzureADAppClientSecretKey { get; set; }
+
     }
 }

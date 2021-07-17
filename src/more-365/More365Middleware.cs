@@ -10,7 +10,7 @@ namespace more365
     {
         public static IServiceCollection AddMore365(this IServiceCollection services, IConfiguration config)
         {
-            return services.AddMore365(config.Get<More365Configuration>());
+            return services.AddMore365(config.GetSection("more365").Get<More365Configuration>());
         }
 
         public static IServiceCollection AddMore365(this IServiceCollection services, More365Configuration config)
@@ -27,7 +27,7 @@ namespace more365
 
         public static IServiceCollection AddMore365Middleware(this IServiceCollection services, IConfiguration config)
         {
-            var more365Config = config.Get<More365Configuration>();
+            var more365Config = config.GetSection("more365").Get<More365Configuration>();
 
             services.AddCors();
 
@@ -35,16 +35,15 @@ namespace more365
                 .AddScoped(s =>
                 {
                     var authenticatedHttpClientFactory = s.GetRequiredService<IAuthenticatedHttpClientFactory>();
-                    var httpClient = authenticatedHttpClientFactory.CreateAuthenticatedHttpClient(more365Config.DynamicsUrl.ToString());
+                    var httpClient = authenticatedHttpClientFactory.CreateAuthenticatedHttpClient(more365Config.DynamicsUrl);
                     httpClient.BaseAddress = more365Config.DynamicsUrl;
                     httpClient.Timeout = new TimeSpan(0, 2, 0);
                     return new HttpProxyService(httpClient);
                 });
 
-            //adds IHttpClientFactory
             services.AddHttpClient(GraphClient.MicrosoftGraphUrl.ToString());
 
-            return services.AddMore365(config);
+            return services.AddMore365(more365Config);
         }
 
         public static void UseMore365Middleware(this IApplicationBuilder builder)

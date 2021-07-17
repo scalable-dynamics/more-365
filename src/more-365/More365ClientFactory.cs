@@ -18,7 +18,7 @@ namespace more365
 
         public IDynamicsClient CreateDynamicsClient(Guid? impersonateAzureADObjectId = null)
         {
-            var httpClient = _authenticatedHttpClientFactory.CreateAuthenticatedHttpClient(_config.DynamicsUrl.ToString(), impersonateAzureADObjectId);
+            var httpClient = _authenticatedHttpClientFactory.CreateAuthenticatedHttpClient(_config.DynamicsUrl, impersonateAzureADObjectId);
             httpClient.BaseAddress = _config.DynamicsUrl;
             httpClient.Timeout = new TimeSpan(0, 2, 0);
             if (impersonateAzureADObjectId.HasValue)
@@ -31,7 +31,7 @@ namespace more365
 
         public IGraphClient CreateGraphClient()
         {
-            var httpClient = _authenticatedHttpClientFactory.CreateAuthenticatedHttpClient(GraphClient.MicrosoftGraphUrl.ToString());
+            var httpClient = _authenticatedHttpClientFactory.CreateAuthenticatedHttpClient(GraphClient.MicrosoftGraphUrl);
             httpClient.BaseAddress = GraphClient.MicrosoftGraphUrl;
             httpClient.Timeout = new TimeSpan(0, 2, 0);
             return new GraphClient(httpClient);
@@ -39,7 +39,7 @@ namespace more365
 
         public ISharePointClient CreateSharePointClient()
         {
-            var httpClient = _authenticatedHttpClientFactory.CreateAuthenticatedHttpClient(_config.SharePointUrl.ToString());
+            var httpClient = _authenticatedHttpClientFactory.CreateAuthenticatedHttpClient(_config.SharePointUrl);
             httpClient.BaseAddress = _config.SharePointUrl;
             httpClient.Timeout = new TimeSpan(0, 2, 0);
             return new SharePointClient(httpClient);
