@@ -1,10 +1,10 @@
-﻿using more365.Dynamics.Serialization;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -16,6 +16,7 @@ namespace more365.Dynamics
         private const int WebApiMaxBatchRequests = 100;
 
         private readonly HttpClient _httpClient;
+        private readonly JsonSerializerOptions _jsonSerializerOptions;
 
         public DynamicsClient(HttpClient authenticatedHttpClient)
         {
@@ -25,6 +26,7 @@ namespace more365.Dynamics
             }
 
             _httpClient = authenticatedHttpClient;
+            _jsonSerializerOptions = new JsonSerializerOptions();
         }
 
         public async Task<IEnumerable<T>> ExecuteBatch<T>(params BatchRequest[] requests)
@@ -103,11 +105,11 @@ namespace more365.Dynamics
             {
                 if (data.Contains("\"value\":["))
                 {
-                    result = data.DeserializeObject<DynamicsValue<T>>();
+                    result = JsonSerializer.Deserialize<DynamicsValue<T>>(data, _jsonSerializerOptions);
                 }
                 else
                 {
-                    result.value = data.DeserializeObject<T>();
+                    result.value = JsonSerializer.Deserialize<T>(data, _jsonSerializerOptions);
                 }
             }
 
@@ -159,7 +161,7 @@ namespace more365.Dynamics
 
                     if (item.Body != null)
                     {
-                        var json = item.Body.SerializeObject();
+                        var json = JsonSerializer.Serialize(item.Body, _jsonSerializerOptions);
                         entryContent.AppendLine(json);
                     }
 
@@ -225,7 +227,8 @@ namespace more365.Dynamics
                             {
                                 var entityId = id.Split('(', ')')[1];
                                 var entityIdJson = $"\"{entityId}\"";
-                                var guid = entityIdJson.DeserializeObject<T>();
+                                var guid = JsonSerializer.Deserialize<T>(entityIdJson, _jsonSerializerOptions);
+
                                 results.Add(guid);
                             }
                         }
@@ -238,7 +241,7 @@ namespace more365.Dynamics
                 else
                 {
                     json = json.Substring(json.IndexOf("{"));
-                    var result = json.DeserializeObject<DynamicsValue<T>>();
+                    var result = JsonSerializer.Deserialize<DynamicsValue<T>>(json, _jsonSerializerOptions);
 
                     if (result != null && (result.error != null || !string.IsNullOrWhiteSpace(result.message)))
                     {

@@ -20,7 +20,6 @@ For Example: Azure AD Authentication using Certificates from Key Vault, Datavers
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
   </ItemGroup>
-
+  
 </Project>

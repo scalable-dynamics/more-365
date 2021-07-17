@@ -1,10 +1,10 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Text.Json;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace more365.Dynamics.Query
 {
@@ -29,8 +29,9 @@ namespace more365.Dynamics.Query
         public static async Task<IEnumerable<T>> ExecuteQuery<T>(this IDynamicsClient dynamicsClient, IEntityQueryExpression<T> query, int? maxRecordCount = null) where T : class, new()
         {
             var url = query.ToFetchUrl<T>(maxRecordCount);
-            var data = await dynamicsClient.ExecuteQuery<JObject>(url);
-            return data.CreateNestedCollectionFromJObject<T>();
+            var data = await dynamicsClient.ExecuteQuery<JsonElement>(url);
+            var reader = new NestedJsonCollectionReader<T>(data);
+            return reader.ReadData();
         }
 
         public static async Task<T> Get<T>(this IDynamicsClient dynamicsClient, IEntityQueryExpression<T> query) where T : class, new()
@@ -40,45 +41,9 @@ namespace more365.Dynamics.Query
             return results.FirstOrDefault();
         }
 
-        internal static string GetEntityLogicalName(this Type type, string entityLogicalName = null)
-        {
-            if (!string.IsNullOrEmpty(entityLogicalName))
-            {
-                return entityLogicalName;
-            }
-            else
-            {
-                var entityNameAttribute = (EntityNameAttribute)type.GetCustomAttributes(typeof(EntityNameAttribute), true).FirstOrDefault();
-                if (entityNameAttribute != null)
-                {
-                    return entityNameAttribute.EntityLogicalName;
-                }
-                else
-                {
-                    return type.Name.ToLower();
-                }
-            }
-        }
+        internal static string GetEntityLogicalName(this Type type, string entityLogicalName = null) => GetTableName(type) ?? entityLogicalName;
 
-        internal static string GetEntitySetName(this Type type, string entitySetName = null)
-        {
-            if (!string.IsNullOrEmpty(entitySetName))
-            {
-                return entitySetName;
-            }
-            else
-            {
-                var entityNameAttribute = (EntityNameAttribute)type.GetCustomAttributes(typeof(EntityNameAttribute), true).FirstOrDefault();
-                if (entityNameAttribute != null)
-                {
-                    return entityNameAttribute.EntitySetName;
-                }
-                else
-                {
-                    return type.Name.ToLower();
-                }
-            }
-        }
+        internal static string GetEntitySetName(this Type type, string entitySetName = null) => GetTableName(type, true) ?? entitySetName;
 
         internal static string GetEntitySetName(this PropertyInfo property)
         {
@@ -93,14 +58,48 @@ namespace more365.Dynamics.Query
             }
         }
 
+        internal static string GetTableName(this Type type, bool useSetName = false)
+        {
+            var tableName = type.Name.ToLower();
+            var tableAttribute = (TableAttribute)type.GetCustomAttributes(typeof(TableAttribute), true).FirstOrDefault();
+            if (tableAttribute != null)
+            {
+                tableName = tableAttribute.Name;
+                if (useSetName)
+                {
+                    tableName += "s";
+                }
+            }
+            else
+            {
+                var entityNameAttribute = (EntityNameAttribute)type.GetCustomAttributes(typeof(EntityNameAttribute), true).FirstOrDefault();
+                if (entityNameAttribute != null)
+                {
+                    if (useSetName)
+                    {
+                        tableName = entityNameAttribute.EntitySetName;
+                    }
+                    else
+                    {
+                        tableName = entityNameAttribute.EntityLogicalName;
+                    }
+                }
+                else if (useSetName)
+                {
+                    tableName += "s";
+                }
+            }
+
+            return tableName;
+        }
+
         internal static string GetPropertyName(this MemberInfo property, bool includeBinding = false)
         {
             var propertyName = property.Name.ToLower();
-
-            var jsonNameAttribute = (JsonPropertyAttribute)property.GetCustomAttributes(typeof(JsonPropertyAttribute), true).FirstOrDefault();
-            if (jsonNameAttribute != null)
+            var ColumnAttribute = (ColumnAttribute)property.GetCustomAttributes(typeof(ColumnAttribute), true).FirstOrDefault();
+            if (ColumnAttribute != null)
             {
-                propertyName = jsonNameAttribute.PropertyName;
+                propertyName = ColumnAttribute.Name;
             }
             else
             {
